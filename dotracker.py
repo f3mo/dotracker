@@ -1,3 +1,6 @@
+#1/usr/bin/python3
+
+
 import json
 import os
 from filecmp  import cmp, dircmp
