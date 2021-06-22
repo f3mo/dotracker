@@ -1,6 +1,4 @@
-#1/usr/bin/python3
-
-
+#!/usr/bin/python3
 import json
 import os
 from filecmp  import cmp, dircmp
@@ -10,7 +8,7 @@ from shutil import copy, copytree
 USER = os.getlogin()
 dotfiles = f'/home/{USER}/dotfiles'
 
-
+config_path = f'/home/{USER}/config.json'
 
 try:
     os.mkdir(dotfiles)
@@ -28,7 +26,7 @@ except:
 paths = {}
 
 
-with open('config.json', 'r')as f:
+with open(config_path, 'r')as f:
     configs = json.loads(f.read())
 
 
@@ -46,19 +44,24 @@ for name, folder in  path.items():
     dest = f'{path}/{name}'
 
     if os.path.isfile(folder):
-        if cmp(folder, f'{path}/{name}'):
-            print('Dotfiles are up to date')
-            exit()
         try:
             os.mkdir(path)
+        except:
+            pass
+
+        try:
             copy(folder, dest, follow_symlinks=True)
         except:
             pass
-    elif dircmp(folder, f'{path}/{name}'):
-        print('Dotfiles are up to date')
-        exit()
+
     try:
         os.mkdir(path)
+    except:
+        pass
+
+    try:
         copytree(folder, dest)
     except:
         pass
+
+print("Dotfiles Updated")
