@@ -10,19 +10,13 @@ dotfiles = f'/home/{USER}/dotfiles'
 
 config_path = f'/home/{USER}/config.json'
 
-try:
-    os.mkdir(dotfiles)
-    copy('config.json', f'{dotfiles}/config.json')
-except:
-    pass
 
-try:
-    os.mkdir(dotfiles)
-    copy('config.json', f'{dotfiles}/config.json')
-except:
-    pass
-
-
+def makdir(folder):
+    try:
+        os.mkdir(folder)
+    except:
+        pass
+makdir(dotfiles)
 paths = {}
 
 
@@ -44,21 +38,14 @@ for name, folder in  path.items():
     dest = f'{path}/{name}'
 
     if os.path.isfile(folder):
-        try:
-            os.mkdir(path)
-        except:
-            pass
+        makdir(path)
 
         try:
             copy(folder, dest, follow_symlinks=True)
         except:
             pass
 
-    try:
-        os.mkdir(path)
-    except:
-        pass
-
+    makdir(path)
     try:
         copytree(folder, dest)
     except:
