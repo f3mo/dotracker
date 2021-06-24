@@ -1,6 +1,6 @@
 ## dotracker
 
-dotracker is simple script for tracking do files
+dotracker is simple script for tracking dot files
 
 #### Installation
 
@@ -9,7 +9,7 @@ dotracker is simple script for tracking do files
 
 #### How it works
 
-dotracker creates a'dotfiles' directory with every config file/folder specified in the config file
+dotracker creates a'dotfile' directory for every config file/folder specified in the config file
 
 ```
 
